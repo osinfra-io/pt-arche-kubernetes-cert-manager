@@ -1,5 +1,5 @@
-# TLS Private Key Resource
-# https://search.opentofu.org/provider/hashicorp/tls/latest/docs/resources/private_key
+# Resources
+# https://opentofu.org/docs/language/resources
 
 resource "tls_private_key" "cert_manager_root" {
   algorithm   = "ECDSA"
