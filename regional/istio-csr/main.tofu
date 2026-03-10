@@ -1,5 +1,5 @@
-# Resources
-# https://opentofu.org/docs/language/resources
+# Helm Release
+# https://search.opentofu.org/provider/hashicorp/helm/latest/docs/resources/release
 
 resource "helm_release" "cert_manager_istio_csr" {
   chart      = "cert-manager-istio-csr"
