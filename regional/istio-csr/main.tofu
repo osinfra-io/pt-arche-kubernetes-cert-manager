@@ -72,6 +72,18 @@ resource "kubernetes_manifest" "istio_ca_issuer" {
   }
 }
 
+resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
+  metadata {
+    name      = "cert-manager-ca"
+    namespace = "istio-system"
+  }
+
+  data = {
+    "tls.crt" = var.tls_self_signed_cert_cert_manager_root_cert
+    "tls.key" = var.tls_self_signed_cert_cert_manager_root_key
+  }
+}
+
 resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
   manifest = {
     apiVersion = "cert-manager.io/v1"
@@ -90,14 +102,3 @@ resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
   }
 }
 
-resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
-  metadata {
-    name      = "cert-manager-ca"
-    namespace = "istio-system"
-  }
-
-  data = {
-    "tls.crt" = var.tls_self_signed_cert_cert_manager_root_cert
-    "tls.key" = var.tls_self_signed_cert_cert_manager_root_key
-  }
-}
