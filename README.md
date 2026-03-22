@@ -6,9 +6,6 @@
 
 OpenTofu **example** module for cert-manager on Google Kubernetes Engine (GKE).
 
-> [!NOTE]
-> We do not recommend consuming this module like you might a [public module](https://search.opentofu.org). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
-
 ## 🔩 Usage
 
 > [!TIP]
