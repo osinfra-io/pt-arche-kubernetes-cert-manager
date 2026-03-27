@@ -22,6 +22,7 @@ OpenTofu **example** module for cert-manager on Google Kubernetes Engine (GKE).
 Links to documentation and other resources required to develop and iterate in this repository successfully.
 
 - [cert-manager](https://cert-manager.io/docs)
+  - [istio-csr](https://cert-manager.io/docs/usage/istio-csr/)
 
 ## 🔍 Tests
 
