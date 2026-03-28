@@ -54,6 +54,9 @@ resource "kubernetes_manifest" "istio_ca_certificate" {
   }
 }
 
+# Kubernetes Manifest Resource
+# https://search.opentofu.org/provider/hashicorp/kubernetes/latest/docs/resources/manifest
+
 resource "kubernetes_manifest" "istio_ca_issuer" {
   manifest = {
     apiVersion = "cert-manager.io/v1"
@@ -72,6 +75,9 @@ resource "kubernetes_manifest" "istio_ca_issuer" {
   }
 }
 
+# Kubernetes Secret Resource
+# https://search.opentofu.org/provider/hashicorp/kubernetes/latest/docs/resources/secret_v1
+
 resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
   metadata {
     name      = "cert-manager-ca"
@@ -83,6 +89,9 @@ resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
     "tls.key" = var.tls_self_signed_cert_cert_manager_root_key
   }
 }
+
+# Kubernetes Manifest Resource
+# https://search.opentofu.org/provider/hashicorp/kubernetes/latest/docs/resources/manifest
 
 resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
   manifest = {
