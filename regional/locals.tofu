@@ -2,6 +2,13 @@
 # https://opentofu.org/docs/language/values/locals
 
 locals {
+  helm_values = [
+    for k, v in local.helm_values_map : {
+      name  = k
+      value = v
+    }
+  ]
+
   helm_values_map = {
     "cainjector.podLabels.tags\\.datadoghq\\.com/service"      = "cert-manager-cainjector"
     "cainjector.resources.limits.cpu"                          = var.cainjector_resources_limits_cpu
@@ -30,10 +37,4 @@ locals {
     "webhook.replicaCount"                                     = var.webhook_replicas
   }
 
-  helm_values = [
-    for k, v in local.helm_values_map : {
-      name  = k
-      value = v
-    }
-  ]
 }

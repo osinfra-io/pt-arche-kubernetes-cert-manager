@@ -4,6 +4,13 @@
 locals {
   cluster_id = module.helpers.zone != null ? "${var.cluster_prefix}-${module.helpers.region}-${module.helpers.zone}-${module.helpers.env}" : "${var.cluster_prefix}-${module.helpers.region}-${module.helpers.env}"
 
+  helm_values = [
+    for k, v in local.helm_values_map : {
+      name  = k
+      value = v
+    }
+  ]
+
   helm_values_map = {
     "app.server.clusterID"                     = local.cluster_id
     "podLabels.tags\\.datadoghq\\.com/env"     = module.helpers.environment
@@ -14,10 +21,4 @@ locals {
     "resources.requests.memory"                = var.resources_requests_memory
   }
 
-  helm_values = [
-    for k, v in local.helm_values_map : {
-      name  = k
-      value = v
-    }
-  ]
 }
