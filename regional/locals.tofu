@@ -16,7 +16,7 @@ locals {
     "cainjector.resources.requests.cpu"                        = var.cainjector_resources_requests_cpu
     "cainjector.resources.requests.memory"                     = var.cainjector_resources_requests_memory
     "cainjector.replicaCount"                                  = var.cainjector_replicas
-    "global.commonLabels.tags\\.datadoghq\\.com/env"           = module.helpers.environment
+    "global.commonLabels.tags\\.datadoghq\\.com/env"           = module.core_helpers.environment
     "global.commonLabels.tags\\.datadoghq\\.com/version"       = var.cert_manager_version
     "podLabels.tags\\.datadoghq\\.com/service"                 = "cert-manager"
     "resources.limits.cpu"                                     = var.resources_limits_cpu

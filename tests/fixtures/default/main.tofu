@@ -1,3 +1,6 @@
+# Required Providers
+# https://opentofu.org/docs/language/providers/requirements
+
 terraform {
   required_providers {
     tls = {
@@ -5,6 +8,9 @@ terraform {
     }
   }
 }
+
+# Kubernetes Cert Manager
+# https://github.com/osinfra-io/pt-arche-kubernetes-cert-manager
 
 module "test" {
   source = "../../../"
