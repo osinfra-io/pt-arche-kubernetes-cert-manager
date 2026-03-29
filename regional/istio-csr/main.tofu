@@ -104,4 +104,3 @@ resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
     }
   }
 }
-
