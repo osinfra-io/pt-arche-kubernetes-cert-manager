@@ -35,9 +35,9 @@ resource "kubernetes_manifest" "istio_ca_certificate" {
       isCA       = true
 
       issuerRef = {
-        name  = kubernetes_manifest.istio_intermediate_ca_issuer.manifest.metadata.name
-        kind  = "Issuer"
         group = "cert-manager.io"
+        kind  = "Issuer"
+        name  = kubernetes_manifest.istio_intermediate_ca_issuer.manifest.metadata.name
       }
 
       privateKey = {
@@ -72,21 +72,6 @@ resource "kubernetes_manifest" "istio_ca_issuer" {
   }
 }
 
-# Kubernetes Secret Resource
-# https://search.opentofu.org/provider/hashicorp/kubernetes/latest/docs/resources/secret_v1
-
-resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
-  metadata {
-    name      = "cert-manager-ca"
-    namespace = "istio-system"
-  }
-
-  data = {
-    "tls.crt" = var.tls_self_signed_cert_cert_manager_root_cert
-    "tls.key" = var.tls_self_signed_cert_cert_manager_root_key
-  }
-}
-
 resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
   manifest = {
     apiVersion = "cert-manager.io/v1"
@@ -102,5 +87,20 @@ resource "kubernetes_manifest" "istio_intermediate_ca_issuer" {
         secretName = kubernetes_secret_v1.istio_cert_manager_ca.metadata[0].name
       }
     }
+  }
+}
+
+# Kubernetes Secret Resource
+# https://search.opentofu.org/provider/hashicorp/kubernetes/latest/docs/resources/secret_v1
+
+resource "kubernetes_secret_v1" "istio_cert_manager_ca" {
+  data = {
+    "tls.crt" = var.tls_self_signed_cert_cert_manager_root_cert
+    "tls.key" = var.tls_self_signed_cert_cert_manager_root_key
+  }
+
+  metadata {
+    name      = "cert-manager-ca"
+    namespace = "istio-system"
   }
 }
