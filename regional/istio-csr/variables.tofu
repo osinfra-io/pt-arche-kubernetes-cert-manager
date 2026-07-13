@@ -1,12 +1,6 @@
 # Input Variables
 # https://opentofu.org/docs/language/values/variables
 
-variable "artifact_registry" {
-  description = "The registry to pull the images from"
-  type        = string
-  default     = "us-docker.pkg.dev/plt-lz-services-tf79-prod/plt-docker-virtual"
-}
-
 variable "cert_manager_istio_csr_version" {
   description = "The version to install for the Istio CSR, this is used for the chart as well as the image tag"
   type        = string

@@ -1,12 +1,6 @@
 # Input Variables
 # https://opentofu.org/docs/language/values/variables
 
-variable "artifact_registry" {
-  description = "The registry to pull the images from"
-  type        = string
-  default     = "us-docker.pkg.dev/plt-lz-services-tf79-prod/plt-docker-virtual"
-}
-
 variable "cainjector_replicas" {
   description = "The number of replicas to run for the cainjector"
   type        = number
