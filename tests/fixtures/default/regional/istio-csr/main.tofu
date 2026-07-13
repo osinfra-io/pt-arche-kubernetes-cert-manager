@@ -21,7 +21,6 @@ terraform {
 module "test" {
   source = "../../../../../regional/istio-csr"
 
-  artifact_registry                           = "mock-docker.pkg.dev/mock-project/mock-virtual"
   cluster_prefix                              = "mock-cluster"
   tls_self_signed_cert_cert_manager_root_cert = "mock-cert"
   tls_self_signed_cert_cert_manager_root_key  = "mock-key"

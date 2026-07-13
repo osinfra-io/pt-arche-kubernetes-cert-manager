@@ -20,6 +20,4 @@ terraform {
 
 module "test" {
   source = "../../../../regional"
-
-  artifact_registry = "mock-docker.pkg.dev/mock-project/mock-virtual"
 }
