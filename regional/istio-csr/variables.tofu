@@ -52,3 +52,9 @@ variable "tls_self_signed_cert_cert_manager_root_key" {
   type        = string
   sensitive   = true
 }
+
+variable "trusted_node_service_accounts" {
+  description = "Service accounts, in the form namespace/name, allowed to use node authentication for CSRs (e.g. Istio ambient's ztunnel)"
+  type        = list(string)
+  default     = ["istio-system/ztunnel"]
+}

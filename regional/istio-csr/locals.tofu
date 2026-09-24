@@ -7,7 +7,8 @@ locals {
   helm_values = {
     app = {
       server = {
-        clusterID = local.cluster_id
+        caTrustedNodeAccounts = join(",", var.trusted_node_service_accounts)
+        clusterID             = local.cluster_id
       }
     }
 
