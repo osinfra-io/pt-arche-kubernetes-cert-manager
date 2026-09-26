@@ -4,9 +4,19 @@
 
 ## Repository Description
 
-OpenTofu **example** module for cert-manager on Google Kubernetes Engine (GKE).
+Reusable OpenTofu child module for cert-manager on Google Kubernetes Engine (GKE).
 
 ## 🔩 Usage
+
+### Module interfaces
+
+| Source path | Purpose | Interface |
+| --- | --- | --- |
+| Repository root | Passes an externally generated shared root CA certificate and private key to regional consumers. | [`variables.tofu`](variables.tofu) · [`outputs.tofu`](outputs.tofu) |
+| `//regional` | Deploys cert-manager and its CRDs through the official Helm chart. | [`regional/variables.tofu`](regional/variables.tofu) |
+| `//regional/istio-csr` | Deploys cert-manager-istio-csr plus the Istio intermediate CA, issuers, and CA Secret. | [`regional/istio-csr/variables.tofu`](regional/istio-csr/variables.tofu) · [`regional/istio-csr/outputs.tofu`](regional/istio-csr/outputs.tofu) |
+
+The root CA private key is a sensitive input/output and is copied into a Kubernetes Secret by `//regional/istio-csr`; restrict state, plan, and cluster-secret access accordingly. cert-manager defaults to one replica for each controller component. Istio CSR trusts `istio-system/ztunnel` for node-authenticated CSRs by default so ambient workloads can obtain identities; widening this list expands certificate-issuance authority. Helm workloads consume cluster resources, while certificate issuers may introduce separate provider or DNS costs.
 
 > [!TIP]
 > You can check the [tests/fixtures](tests/fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples on which to base your configurations.
