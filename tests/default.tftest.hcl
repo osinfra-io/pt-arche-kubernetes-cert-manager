@@ -31,4 +31,9 @@ run "default_regional_istio_csr" {
   module {
     source = "./tests/fixtures/default/regional/istio-csr"
   }
+
+  assert {
+    condition     = output.trusted_node_service_accounts == "istio-system/ztunnel"
+    error_message = "The istio-csr Helm release must trust the ztunnel node identity for ambient mesh certificate issuance"
+  }
 }

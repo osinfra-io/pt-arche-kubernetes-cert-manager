@@ -11,6 +11,12 @@ OpenTofu **example** module for cert-manager on Google Kubernetes Engine (GKE).
 > [!TIP]
 > You can check the [tests/fixtures](tests/fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples on which to base your configurations.
 
+### Istio ambient mesh (ztunnel) support
+
+`regional/istio-csr` issues workload certificates for both sidecar and ambient Istio clients. Ambient mode's `ztunnel` runs once per node and requests certificates for multiple workload identities on that node, so it must be trusted to use Kubernetes node authentication for its CSRs. This is enabled by default via `trusted_node_service_accounts`, which grants the `istio-system/ztunnel` service account (matching the namespace and release name used in [pt-arche-kubernetes-istio](https://github.com/osinfra-io/pt-arche-kubernetes-istio)) node-authenticated CSR access.
+
+Node authentication for CSRs requires `cert-manager-istio-csr` chart `v0.12.0` or later; this module already pins a newer version by default. Certificate issuance and rotation for ambient-only workloads should still be exercised against a live cluster as part of runtime validation — this can't be proven by this module's mocked tests alone.
+
 ## 🛠️ Tools
 
 - [helm](https://github.com/helm/helm)
@@ -23,6 +29,7 @@ Links to documentation and other resources required to develop and iterate in th
 
 - [cert-manager](https://cert-manager.io/docs)
   - [istio-csr](https://cert-manager.io/docs/usage/istio-csr/)
+- [Istio ambient mesh](https://istio.io/latest/docs/ambient/)
 
 ## 🔍 Tests
 
