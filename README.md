@@ -19,7 +19,7 @@ Reusable OpenTofu child module for cert-manager on Google Kubernetes Engine (GKE
 The root CA private key is a sensitive input/output and is copied into a Kubernetes Secret by `//regional/istio-csr`; restrict state, plan, and cluster-secret access accordingly. cert-manager defaults to one replica for each controller component. Istio CSR trusts `istio-system/ztunnel` for node-authenticated CSRs by default so ambient workloads can obtain identities; widening this list expands certificate-issuance authority. Helm workloads consume cluster resources, while certificate issuers may introduce separate provider or DNS costs.
 
 > [!TIP]
-> See [tests/fixtures](tests/fixtures) for example configurations.
+> You can check the [tests/fixtures](tests/fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples on which to base your configurations.
 
 ### Istio ambient mesh (ztunnel) support
 
