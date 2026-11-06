@@ -1,11 +1,17 @@
 crds:
   enabled: true
 
-global:
-  commonLabels:
-    tags.datadoghq.com/source: cert-manager
+podAnnotations:
+  ad.datadoghq.com/cert-manager-controller.logs: '[{"source":"cert_manager","service":"cert-manager"}]'
+
+cainjector:
+  podAnnotations:
+    ad.datadoghq.com/cert-manager-cainjector.logs: '[{"source":"cert_manager","service":"cert-manager-cainjector"}]'
 
 webhook:
+  podAnnotations:
+    ad.datadoghq.com/cert-manager-webhook.logs: '[{"source":"cert_manager","service":"cert-manager-webhook"}]'
+
   serviceAnnotations:
     # IST0118: Port name 'metrics' doesn't follow Istio naming convention.
     # The chart doesn't support customizing port names, so we suppress the warning.
