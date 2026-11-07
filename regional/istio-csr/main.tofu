@@ -8,7 +8,6 @@ resource "helm_release" "cert_manager_istio_csr" {
   repository = var.chart_repository
 
   values = [
-    file("${path.module}/helm/cert-manager-istio-csr.yml"),
     yamlencode(local.helm_values)
   ]
 
