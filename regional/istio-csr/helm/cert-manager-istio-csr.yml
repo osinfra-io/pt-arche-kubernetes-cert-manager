@@ -1,2 +1,0 @@
-podLabels:
-  tags.datadoghq.com/service: cert-manager-istio-csr

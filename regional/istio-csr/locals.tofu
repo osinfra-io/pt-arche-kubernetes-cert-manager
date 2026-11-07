@@ -14,6 +14,7 @@ locals {
 
     podLabels = {
       "tags.datadoghq.com/env"     = module.core_helpers.environment
+      "tags.datadoghq.com/service" = "cert-manager-istio-csr"
       "tags.datadoghq.com/version" = var.cert_manager_istio_csr_version
     }
 
